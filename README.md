@@ -1,7 +1,11 @@
 
 # Phone Recipes 
 
-Cook multiple dishes at the same time with the help of stopwatches on this Android app.
+## Cook multiple dishes at the same time with the help of stopwatches on this Android app.
+
+This is a much easier to use copy of the web page https://phone-recipes.herokuapp.com.
+
+Adding, editing, and deletion of recipes can only be done on the Internet as this mobile version of the program has no editing capabilities.
 
 -------------------------------
 ## App Use

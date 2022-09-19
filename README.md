@@ -7,12 +7,12 @@ Cook multiple dishes at the same time with the help of stopwatches on this Andro
 ## App Use
 
 ### Step 1
-Your recipes.
+Your recipes, after you have signed in with your Gmail account.
 
 ![](git-images/step-1.jpg)
 
 ### Step 2
-Choose 'Chicken Pieces' and 'Rice'.
+Choose 'Chicken Pieces' and 'Rice'. And then click 'Kitchen'.
 
 ![](git-images/step-2.jpg)
 

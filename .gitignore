@@ -1,0 +1,105 @@
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+
+
+# node.js
+#
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+
+# Bundle artifact
+*.jsbundle
+
+
+# Misc
+
+android/app/build/crashlytics
+android/app/build/generated
+android/app/build/intermediates
+android/app/build/outputs/apk/debug
+
+
+#android/app/build/outputs/apk/release/app-arm64-v8a-release.apk 
+android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk
+android/app/build/outputs/apk/release/app-x86_64-release.apk
+android/app/build/outputs/apk/release/app-x86-release.apk
+
+android/app/build/outputs/Bundle
+android/app/build/outputs/logs
+android/app/build/outputs/mapping
+android/app/build/outputs/sdk-dependencies
+android/app/build/tmp
+
+
+/build/kotlin
+
+scripts/*.log
+
+
+
+
+
+
+
+
+
+
+# CocoaPods
+/ios/Pods/
+
+
+
+
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+
+
+

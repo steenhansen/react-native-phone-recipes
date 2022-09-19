@@ -1,0 +1,26 @@
+/* TESTING CONSTANTS, set to false on production */
+
+const TEST_EMPTY_CACHE_ON_START = false;
+const TEST_FAIL_SILENT_SIGNIN = false;
+const TEST_FAIL_LOAD_SERVER_DATA = false;
+
+const TEST_FAIL_RENEW_SERVER_DATA = false;
+
+
+const TEST_FAIL_SERVER_CONNECTABLE = false;
+
+if (TEST_EMPTY_CACHE_ON_START || TEST_FAIL_SILENT_SIGNIN || TEST_FAIL_LOAD_SERVER_DATA || TEST_FAIL_SERVER_CONNECTABLE) {
+  console.log('TESTING IS ON JJ42 !!!!!!!!!!!!!!!!!!!!!')
+}
+
+
+//   have a test, TEST_ALL_TIMERS_4_SECONDS
+///  recipe_milli = 2000;   ///////////////@@@@@@@@@@@@@@@@@@@@@
+
+export {
+  TEST_EMPTY_CACHE_ON_START,
+  TEST_FAIL_SILENT_SIGNIN,
+  TEST_FAIL_LOAD_SERVER_DATA,
+  TEST_FAIL_RENEW_SERVER_DATA,
+  TEST_FAIL_SERVER_CONNECTABLE,
+};

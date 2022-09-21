@@ -1,5 +1,5 @@
 
-# Phone Recipes ![](./google-icons/fork-knife-512.gif =48x48)
+# Phone Recipes ![](./google-icons/fork-knife-512.gif)
 
 ## Cook multiple dishes at the same time with the help of stopwatches on this Android app.
 

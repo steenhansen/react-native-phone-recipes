@@ -22,7 +22,7 @@ yarn.lock
 buck-out/
 \.buckd/
 *.keystore
-
+keystore.REAL.properties
 
 # fastlane
 #

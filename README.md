@@ -1,5 +1,5 @@
 
-# Phone Recipes 
+# Phone Recipes ![](./google-icons/fork-knife-512.gif =48x48)
 
 ## Cook multiple dishes at the same time with the help of stopwatches on this Android app.
 
@@ -7,24 +7,28 @@ This is a much easier to use copy of the web page https://phone-recipes.herokuap
 
 Adding, editing, and deletion of recipes can only be done on the Internet as this mobile version of the program has no editing capabilities.
 
+
+
+
 -------------------------------
 ## App Use
+
 
 ### Step 1
 Your recipes, after you have signed in with your Gmail account.
 
-![](git-images/step-1.jpg)
+![](google-icons/git-step-1.jpg)
 
 ### Step 2
 Choose 'Chicken Pieces' and 'Rice'. And then click 'Kitchen'.
 
-![](git-images/step-2.jpg)
+![](google-icons/git-step-2.jpg)
 
 
 ### Step 3
 Use the stopwatches to coordinate different dishes.
 
-![](git-images/step-3.jpg)
+![](google-icons/git-step-3.jpg)
 
 
 -------------------------------
@@ -109,7 +113,14 @@ https://stackoverflow.com/questions/5350624/set-icon-for-android-application
 
 PS C:/the-project/android> ./gradlew bundleRelease
 
+/the-project/android/app/build/outputs/bundle/release/app-release.aab
 
+
+        versionCode 2
+        versionName "2.0"
+
+
+        
 
 PS C:/the-project/android> ./gradlew clean
 PS C:/the-project/android> ./gradlew assembleRelease

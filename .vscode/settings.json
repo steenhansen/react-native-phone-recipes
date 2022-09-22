@@ -1,5 +1,0 @@
-{
-  "typescript.validate.enable": true,
-"javascript.validate.enable": false,
-"java.configuration.updateBuildConfiguration": "interactive",
-}

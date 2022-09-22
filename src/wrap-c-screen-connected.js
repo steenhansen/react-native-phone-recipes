@@ -41,10 +41,9 @@ async function isServerConnectable() {
   return global.SERVER_IS_CONNECTABLE;
 }
 
-
-
 function WrapC_Screen_Connected({ setHave_2_firstPaint }) {
   const [is_server_connected, setIs_server_connected] = useState(false);
+  const [_clear_my_interval, _setClear_my_interval] = useState(0); // not used, need for useFuzzyInterval()
 
   useFuzzyInterval(() => {
     let server_CONNECTABLE = isServerConnectable();
@@ -53,7 +52,7 @@ function WrapC_Screen_Connected({ setHave_2_firstPaint }) {
       global.SERVER_IS_CONNECTABLE = false;
     }
     setIs_server_connected(server_CONNECTABLE);
-  }, INTERVAL_CHECK_SERVER_CONNECTABLE);
+  }, INTERVAL_CHECK_SERVER_CONNECTABLE, _setClear_my_interval);
 
   useEffect(() => {
     //   updates via global vars
@@ -61,7 +60,7 @@ function WrapC_Screen_Connected({ setHave_2_firstPaint }) {
 
   useEffect(() => {
     setHave_2_firstPaint(true);
-  });
+  }, []);
 
   const which__showing = useSelector((filter_state) => filter_state.show_which);
 

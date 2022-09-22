@@ -1,9 +1,8 @@
 //  https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 
-
 import { useEffect, useRef } from 'react';
 
-function useFuzzyInterval(fuzzy_callback, fuzzy_delay) {
+function useFuzzyInterval(fuzzy_callback, fuzzy_delay, setClear_my_interval) {
   const saved_callback = useRef();
 
   useEffect(() => {
@@ -15,13 +14,10 @@ function useFuzzyInterval(fuzzy_callback, fuzzy_delay) {
       saved_callback.current();
     }
     if (fuzzy_delay !== null) {
-      let fuzzy_id = setInterval(fuzzyTick, fuzzy_delay);
-      return () => clearInterval(fuzzy_id);
+      const fuzzy_id = setInterval(fuzzyTick, fuzzy_delay);
+      setClear_my_interval(fuzzy_id);
     }
   }, [fuzzy_delay]);
 }
-
-
-
 
 export { useFuzzyInterval };

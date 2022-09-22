@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EXTRA_TIMER_START } from '../util-funcs/global-values';
 
 import { GroupButtons } from '../recipe-components/Group-Buttons';
@@ -9,7 +9,7 @@ import { Vibration } from 'react-native';
 import { TIMER_OVERRUN_MSEC, TIMER_OVERRUN_VIBRATE } from '../util-funcs/global-values';
 import { normalizeStyles } from '../util-funcs/normalize-css';
 
-import { INTERVAL_TIMER_EXECUTE, THEME_TIMER_OK, THEME_TIMER_OVERRUN } from '../constants';
+import { INTERVAL_TIMER_EXECUTE, THEME_TIMER_OK, THEME_TIMER_OVERRUN, THEME_TIMER_POSITIVE } from '../constants';
 
 const toHHMMSS = function (sec_num, num_minutes) {
   const pos_num = Math.abs(sec_num);
@@ -80,7 +80,7 @@ function countUp({ hh_mm_ss, show_milli, is_timing, timerToggle, timerReset, tim
 }
 
 function countDown({ hh_mm_ss, show_milli, recipe_milli, num_minutes, is_timing, timerToggle, timerReset, timerResume }) {
-  let time_color = THEME_TIMER_OK;
+  let time_color = THEME_TIMER_POSITIVE;
   if (show_milli < 0) {
     time_color = THEME_TIMER_OVERRUN; // only counting down timers get to be red, extra is always green
     if (show_milli > TIMER_OVERRUN_MSEC) {
@@ -113,7 +113,8 @@ function drawTimer(props) {
   return toggled_timer;
 }
 
-function ToggledTimer({ num_minutes }) {
+function ToggledTimer({ num_minutes, setClear_my_interval }) {
+
   if (num_minutes === 0) { return ""; }
   let recipe_milli, show_milli;
   if (num_minutes < 0) {
@@ -136,7 +137,7 @@ function ToggledTimer({ num_minutes }) {
       const new_current_milli = now_milli - milli_current_start;
       setMilli_current_interval(new_current_milli);
     }
-  }, INTERVAL_TIMER_EXECUTE);
+  }, INTERVAL_TIMER_EXECUTE, setClear_my_interval);
 
   const timerResume = () => {
     const now_milli = Date.now();

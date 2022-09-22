@@ -1,5 +1,5 @@
 import { Icon, ListItem } from '@rneui/themed';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { cloneRecipe } from '../recipe-store';
@@ -59,9 +59,18 @@ function ExpandedRecipes({ expanded_collection }) {
 }
 
 function ExpandedAccordian({ recipe_index, current_recipe }) {
+  const [clear_my_interval, setClear_my_interval] = useState(0);
+
+  useEffect(() => {
+    if (clear_my_interval) {
+      return () => clearInterval(clear_my_interval);
+    }
+  }, [clear_my_interval]);
+
   const accordian_title = AccordianTitle(current_recipe.title, 'no-underline');
   const recipe_ingredients = ExpandedIngredients(recipe_index, current_recipe);
   const my_icon = (<Icon name={'power-on'} type="material-community" size={0} />);
+
   return (
     <ListItem.Accordion style={{ backgroundColor: '', padding: 0 }}
       containerStyle={{ backgroundColor: '', margin: 0, padding: 0 }}
@@ -71,7 +80,7 @@ function ExpandedAccordian({ recipe_index, current_recipe }) {
       icon={my_icon}                      >
       {recipe_ingredients}
       <View style={[styles_scroll.filter_space]} ></View>
-      <ToggledTimer num_minutes={current_recipe.minutes}></ToggledTimer>
+      <ToggledTimer num_minutes={current_recipe.minutes} setClear_my_interval={setClear_my_interval}></ToggledTimer>
     </ListItem.Accordion>
   )
 }

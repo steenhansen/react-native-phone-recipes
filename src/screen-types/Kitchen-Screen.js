@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from "react";
 import { ScrollView } from 'react-native';
 import { useSelector } from "react-redux";
 
@@ -12,6 +12,14 @@ import { HorzLine, VertSpace } from '../screen-components/Horz-Ver';
 
 
 function KitchenScreen({ setHave_2_firstPaint }) {
+  const [clear_my_interval, setClear_my_interval] = useState(0);
+
+  useEffect(() => {
+    if (clear_my_interval) {
+      return () => clearInterval(clear_my_interval);
+    }
+  }, [clear_my_interval]);
+
   const recipes_kitchen = useSelector((s) => s.recipes_kitchen);
   return (
     <ScrollView >
@@ -22,7 +30,7 @@ function KitchenScreen({ setHave_2_firstPaint }) {
       <HorzLine line_color='black' />
       <VertSpace back_color='white' />
 
-      <ToggledTimer num_minutes={-1}></ToggledTimer>
+      <ToggledTimer num_minutes={-1} setClear_my_interval={setClear_my_interval}></ToggledTimer>
     </ScrollView >
   );
 }

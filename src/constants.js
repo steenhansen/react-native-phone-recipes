@@ -20,11 +20,12 @@ const GOTO_SERVER = "https://phone-recipes.herokuapp.com/"
 
 const THEME_TIMER_OVERRUN = 'red';
 const THEME_TIMER_OK = 'black';
+const THEME_TIMER_POSITIVE = 'green';
 
 const THEME_ALIVE_INPUT_COLOR = 'rgba(0, 255, 0, 0.1)';
 const THEME_DEAD_INPUT_COLOR = 'rgba(0, 0, 0, 0.05)';
 
-const INTERVAL_CHECK_SERVER_CONNECTABLE = 1000;
+const INTERVAL_CHECK_SERVER_CONNECTABLE = 4321;
 const INTERVAL_TIMER_EXECUTE = 250;
 
 const ASSUME_SERVER_CONNECTABLE_START = true;
@@ -35,7 +36,7 @@ const EMPTY_CACHE_STATE = { google_email: null, recipes_yours: null, recipes_all
 
 export {
 
-  THEME_TIMER_OVERRUN,
+  THEME_TIMER_OVERRUN, THEME_TIMER_POSITIVE, THEME_TIMER_OK,
 
   EMPTY_CACHE_STATE,
 

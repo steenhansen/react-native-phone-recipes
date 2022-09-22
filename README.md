@@ -3,9 +3,11 @@
 
 ## Cook multiple dishes at the same time with the help of stopwatches on this Android app.
 
-This is a much easier to use copy of the web page https://phone-recipes.herokuapp.com.
+Use the web page, https://phone-recipes.herokuapp.com, to add/edit/delete your recipes.
 
-Adding, editing, and deletion of recipes can only be done on the Internet as this mobile version of the program has no editing capabilities.
+Directly [download version 2 signed universal Android APK](https://github.com/steenhansen/react-native-phone-recipes/raw/main/phone-recipes-v2.apk), which does not require any special access.
+
+
 
 
 

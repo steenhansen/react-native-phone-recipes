@@ -1,13 +1,18 @@
 
+
+
+
+
+
+
+
 # Phone Recipes ![](./google-icons/google-icon-48.png)
 
 ## Cook multiple dishes at the same time with the help of stopwatches on this Android app.
 
-Use the web page, https://phone-recipes.herokuapp.com, to add/edit/delete your recipes.
+This is a much easier to use copy of the web page https://phone-recipes.herokuapp.com.
 
-Directly [download version 2 signed universal Android APK](https://github.com/steenhansen/react-native-phone-recipes/raw/main/phone-recipes-v2.apk), which does not require any special access.
-
-
+Adding, editing, and deletion of recipes can only be done on the Internet as this mobile version of the program has no editing capabilities.
 
 
 
@@ -113,7 +118,7 @@ https://stackoverflow.com/questions/5350624/set-icon-for-android-application
 ```bash
 
 
-PS C:/the-project/android> ./gradlew bundleRelease
+PS C:/the-project/android> ./gradlew bundleRelease       // make an aab
 
 /the-project/android/app/build/outputs/bundle/release/app-release.aab
 
@@ -125,7 +130,7 @@ PS C:/the-project/android> ./gradlew bundleRelease
         
 
 PS C:/the-project/android> ./gradlew clean
-PS C:/the-project/android> ./gradlew assembleRelease
+PS C:/the-project/android> ./gradlew assembleRelease         // make an apk
 
 
 
@@ -144,6 +149,10 @@ The only permission used is Internet.
 
 -------------------------------
 
+## Run APK in Emulator
+
+Drag /the-project/android/app/build/apk/release/app-x86-release.apk into Android Studio running emulator
+
 ## Possible Errors and Fixes
 
 ERROR
@@ -157,7 +166,13 @@ ERROR
     java.util.concurrent.ExecutionException: com.android.builder.testing.api.DeviceException: com.android.ddmlib.InstallException: INSTALL_FAILED_CONFLICTING_PROVIDER: Scanning Failed.: Can't install because provider name com.facebook.app.FacebookContentProvider355198514515820 (in package com.STEENHANSEN.FONECOOK3) is already used by com.steenhansen.phonerecipes
 
     FIX
-      adb uninstall com.STEENHANSEN.FONECOOK3
+      adb uninstall com.fonecook3
+
+ERROR
+    jest-haste-map: Haste module naming collision: fonecook3
+
+    FIX
+      adb uninstall com.fonecook3
 
 
 ERROR
@@ -170,3 +185,12 @@ ERROR
       /yarn start --reset-cache
       /yarn android
 
+////////////////////////////////////////////////////////////////////////////////
+
+
+make apk
+
+1 Open Android SDK
+2 open /the-project/android project
+3 Build | Build Bundle(s) / APK(s)
+4 Build APK(s)

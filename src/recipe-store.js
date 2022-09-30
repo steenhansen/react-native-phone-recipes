@@ -39,6 +39,7 @@ function makeReduxStore(init_redux_store) {
 }
 
 const recipeReducer = (state, action) => {
+  console.log('action', action.type)
   let next_state;
   if (action.type === "start-cache") {
     next_state = reduxStartCache(state, action);
@@ -65,11 +66,36 @@ const recipeReducer = (state, action) => {
     next_state = reduxViewYourRecipes(state, action);
   } else if (action.type === "kitchen-view") {
     next_state = reduxViewKitchen(state, action);
+  } else if (action.type === "dark-view") {
+    next_state = reduxSetDark(state, action);
   } else {
     next_state = state;
   }
   return next_state;
 };
+
+
+function reduxSetDark(state, action) {
+  const recipes_yours = cloneRecipeList(state.recipes_yours);
+  const recipes_all = cloneRecipeList(state.recipes_all);
+  const recipes_other = cloneRecipeList(state.recipes_other);
+  const recipes_kitchen = [];
+  const google_email = state.google_email;
+  const google_other = state.google_other;
+  const google_user_id = state.google_user_id
+  const google_idToken = state.google_idToken
+  const show_previous = state.show_previous;
+  const show_which = state.show_which;
+  const is_dark = action.payload.is_dark;
+
+  console.log('ddddddddddd', is_dark, action.payload.is_dark)
+  const next_state = {
+    recipes_all, recipes_yours, recipes_other, recipes_kitchen,
+    show_which, show_previous, is_dark,
+    google_email, google_other, google_user_id, google_idToken
+  };
+  return next_state;
+}
 
 
 function reduxViewOthersRecipes(state, action) {
@@ -82,9 +108,10 @@ function reduxViewOthersRecipes(state, action) {
   const google_idToken = state.google_idToken
   show_previous = state.show_which;
   const show_which = SHOW_OTHER;
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -101,9 +128,10 @@ function reduxStartCache(state, action) {
   const show_which = SHOW_ALL;
   const google_user_id = state.google_user_id
   const google_idToken = state.google_idToken
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -120,9 +148,10 @@ function reduxServerData(state, action) {
   const show_which = state.show_which;
   const google_user_id = state.google_user_id
   const google_idToken = state.google_idToken
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -145,9 +174,10 @@ function reduxSignInClick(state, action) {
   const recipes_other = [];
   const recipes_kitchen = [];
   const google_other = '';
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -164,9 +194,10 @@ function reduxSignOutClick(state, action) {
   const google_other = '';
   google_user_id = '';
   google_idToken = '';
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -193,9 +224,10 @@ function reduxSilentSignin(state, action) {
   const recipes_other = [];
   const recipes_kitchen = [];
   const google_other = '';
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -212,9 +244,10 @@ function reduxViewAllRecipes(state, action) {
   const google_other = '';
   const google_user_id = state.google_user_id;
   const google_idToken = state.google_idToken;
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -231,9 +264,10 @@ function reduxViewYourRecipes(state, action) {
   const google_other = '';
   const google_user_id = state.google_user_id;
   const google_idToken = state.google_idToken;
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   }
   return next_state;
@@ -250,9 +284,10 @@ function reduxViewKitchen(state, action) {
   const google_other = '';
   const google_user_id = state.google_user_id;
   const google_idToken = state.google_idToken;
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;
@@ -272,9 +307,10 @@ function reduxAboutClick(state, action) {
   const google_other = '';
   const google_user_id = state.google_user_id;
   const google_idToken = state.google_idToken;
+  const is_dark = state.is_dark;
   const next_state = {
     recipes_all, recipes_yours, recipes_other, recipes_kitchen,
-    show_which, show_previous,
+    show_which, show_previous, is_dark,
     google_email, google_other, google_user_id, google_idToken
   };
   return next_state;

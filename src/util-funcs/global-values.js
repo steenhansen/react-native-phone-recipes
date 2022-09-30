@@ -16,9 +16,13 @@ const SHOW_KITCHEN = 'show::kitchen';
 const SHOW_ABOUT = 'show::about';
 
 
+const EMPTY_DIET_BOX = ' ';
+
+
 const MEAL_TYPES = ['Breakfast', 'Brunch', 'Lunch', 'Supper', 'Dessert', 'Snack'];
 const CUISINE_TYPES = ['Chinese', 'Indian', 'Japanese', 'Mexican', 'Italian', 'French'];
-const DIET_TYPES = ['Omnivore', 'Vegan', 'Vegetarian', 'Halal', 'Kosher'];
+const DIET_TYPES = ['Omnivore', 'Vegan', 'Vegetarian', 'Halal', 'Kosher', EMPTY_DIET_BOX];
+
 
 const ID_SEPARATOR = "~";
 
@@ -36,10 +40,12 @@ const INIT_REDUX_STORE = {
   google_other: '',
   google_email: '',
   google_user_id: '',
-  google_idToken: ''
+  google_idToken: '',
+  is_dark: false
 };
 
 export {
+  EMPTY_DIET_BOX,
   TIMER_OVERRUN_VIBRATE, TIMER_OVERRUN_MSEC, SOLID_UNDERLINE_CHARS,
   EXTRA_TIMER_START,
   INIT_REDUX_STORE,

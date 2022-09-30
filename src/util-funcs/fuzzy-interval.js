@@ -20,4 +20,14 @@ function useFuzzyInterval(fuzzy_callback, fuzzy_delay, setClear_my_interval) {
   }, [fuzzy_delay]);
 }
 
+// so wonky
+// function varyingInterval(vary_callback, vary_delay) {
+//   const vary_id = setInterval(vary_callback, vary_delay);
+//   return vary_id;
+// }
+
+
+
+
+
 export { useFuzzyInterval };

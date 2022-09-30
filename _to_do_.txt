@@ -1,7 +1,0 @@
-
-
-
-
-
-timer === green color if still good NOT black
-

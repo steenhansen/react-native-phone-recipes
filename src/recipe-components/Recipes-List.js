@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 import { cloneRecipe } from '../recipe-store';
 import { AccordianTitle } from './Accordian-Title';
-import { ExpandedIngredients, RecipeIngredients } from './Recipe-Ingredients';
+import { RecipeKitchen, RecipeChoose } from './Recipe-Ingredients';
 import { ToggledTimer } from "../screen-components/Toggled-Timer";
 import { normalizeStyles } from '../util-funcs/normalize-css';
 
@@ -29,7 +29,7 @@ function RecipeAccordian({ recipe_index, recipes_expanded, setRecipes_expanded, 
   }
 
   const accordian_title = AccordianTitle(current_recipe.title, 'yes-underline', on_showHideRecipe);
-  const recipe_ingredients = RecipeIngredients(recipe_index, current_recipe, google_email, recipes_expanded);
+  const recipe_ingredients = RecipeChoose(current_recipe, google_email, recipes_expanded);
   const my_icon = (<Icon name={'power-on'} type="material-community" size={0} />);
   return (
     <ListItem.Accordion style={{ backgroundColor: '', padding: 0 }}
@@ -53,13 +53,13 @@ function RecipesList({ filtered_collection, scroll_view_ref, google_email }) {
 }
 
 function ExpandedRecipes({ expanded_collection }) {
-  const expanded_list = expanded_collection.map((current_recipe, recipe_index) =>
-    <ExpandedAccordian key={current_recipe.title} recipe_index={recipe_index} current_recipe={current_recipe} />)
+  const expanded_list = expanded_collection.map((current_recipe) =>
+    <ExpandedAccordian key={current_recipe.title} current_recipe={current_recipe} />)
   return expanded_list;
 }
 
-function ExpandedAccordian({ recipe_index, current_recipe }) {
-  const [clear_my_interval, setClear_my_interval] = useState(0);
+function ExpandedAccordian({ current_recipe }) {
+  const [clear_my_interval, setClear_my_interval] = useState(0);            // not ever used
 
   useEffect(() => {
     if (clear_my_interval) {
@@ -68,7 +68,7 @@ function ExpandedAccordian({ recipe_index, current_recipe }) {
   }, [clear_my_interval]);
 
   const accordian_title = AccordianTitle(current_recipe.title, 'no-underline');
-  const recipe_ingredients = ExpandedIngredients(recipe_index, current_recipe);
+  const recipe_ingredients = RecipeKitchen(current_recipe);
   const my_icon = (<Icon name={'power-on'} type="material-community" size={0} />);
 
   return (

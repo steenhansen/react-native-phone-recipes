@@ -9,7 +9,23 @@ import { Vibration } from 'react-native';
 import { TIMER_OVERRUN_MSEC, TIMER_OVERRUN_VIBRATE } from '../util-funcs/global-values';
 import { normalizeStyles } from '../util-funcs/normalize-css';
 
+import { lightOrDark } from '../util-funcs/light-dark';
 import { INTERVAL_TIMER_EXECUTE, THEME_TIMER_OK, THEME_TIMER_OVERRUN, THEME_TIMER_POSITIVE } from '../constants';
+
+
+import {
+  DARK_BTN_TEXT, LITE_BTN_TEXT
+} from '../constants.js';
+
+const light_css = {
+  button_text: LITE_BTN_TEXT,
+};
+
+const dark_css = {
+  button_text: DARK_BTN_TEXT,
+};
+
+
 
 const toHHMMSS = function (sec_num, num_minutes) {
   const pos_num = Math.abs(sec_num);
@@ -32,15 +48,15 @@ const toHHMMSS = function (sec_num, num_minutes) {
   return hh_mm_ss;
 };
 
-function startTimer(timerToggle, start_words) {
+function startTimer(timerToggle, start_words, time_color) {
   const font_size = styles_header.ButtonGroup_textStyle;
   const buttons = [start_words];
   const container_height = styles_header.ButtonGroup_containerStyle;
-  const start_timer = GroupButtons(timerToggle, { buttons, font_size, container_height });
+  const start_timer = GroupButtons(timerToggle, { buttons, font_size, container_height, time_color });
   return start_timer;
 }
 
-function resumeReset(hh_mm_ss, timerResume, timerReset, resume_words, reset_words, time_color = THEME_TIMER_OK) {
+function resumeReset(hh_mm_ss, timerResume, timerReset, resume_words, reset_words, time_color) {
   const top_buttons = [resume_words, reset_words, hh_mm_ss];
   const updateTopRadio = async chosen_index => {
     if (chosen_index == 0) {
@@ -57,7 +73,7 @@ function resumeReset(hh_mm_ss, timerResume, timerReset, resume_words, reset_word
   return pause_timer;
 }
 
-function pauseTimer(hh_mm_ss, timerToggle, pause_words, time_color = THEME_TIMER_OK) {
+function pauseTimer(hh_mm_ss, timerToggle, pause_words, time_color) {
   const font_size = styles_header.ButtonGroup_textStyle;
   const buttons = [pause_words, hh_mm_ss];
   const container_height = styles_header.ButtonGroup_containerStyle;
@@ -66,21 +82,21 @@ function pauseTimer(hh_mm_ss, timerToggle, pause_words, time_color = THEME_TIMER
   return pause_timer;
 }
 
-function countUp({ hh_mm_ss, show_milli, is_timing, timerToggle, timerReset, timerResume }) {
+function countUp({ hh_mm_ss, show_milli, is_timing, timerToggle, timerReset, timerResume, ok_time_color }) {
   const has_not_started = (show_milli === 0);
   let toggled_timer;
   if (!is_timing && has_not_started) {
-    toggled_timer = startTimer(timerToggle, "Start Extra Timer");
+    toggled_timer = startTimer(timerToggle, "Start Extra Timer", ok_time_color);
   } else if (is_timing) {
-    toggled_timer = pauseTimer(hh_mm_ss, timerToggle, "Pause Extra Timer");
+    toggled_timer = pauseTimer(hh_mm_ss, timerToggle, "Pause Extra Timer", ok_time_color);
   } else {
-    toggled_timer = resumeReset(hh_mm_ss, timerResume, timerReset, 'Resume Extra', 'Reset Extra');
+    toggled_timer = resumeReset(hh_mm_ss, timerResume, timerReset, 'Resume Extra', 'Reset Extra', ok_time_color);
   }
   return toggled_timer;
 }
 
-function countDown({ hh_mm_ss, show_milli, recipe_milli, num_minutes, is_timing, timerToggle, timerReset, timerResume }) {
-  let time_color = THEME_TIMER_POSITIVE;
+function countDown({ hh_mm_ss, show_milli, recipe_milli, num_minutes, is_timing, timerToggle, timerReset, timerResume, ok_time_color }) {
+  let time_color = ok_time_color;
   if (show_milli < 0) {
     time_color = THEME_TIMER_OVERRUN; // only counting down timers get to be red, extra is always green
     if (show_milli > TIMER_OVERRUN_MSEC) {
@@ -90,7 +106,7 @@ function countDown({ hh_mm_ss, show_milli, recipe_milli, num_minutes, is_timing,
   const has_not_started = (show_milli === recipe_milli);
   let toggled_timer;
   if (!is_timing && has_not_started) {
-    toggled_timer = startTimer(timerToggle, "Start " + num_minutes + " Minute Timer");
+    toggled_timer = startTimer(timerToggle, "Start " + num_minutes + " Minute Timer", time_color);
   } else if (is_timing) {
     toggled_timer = pauseTimer(hh_mm_ss, timerToggle, "Pause " + num_minutes + " Minute Timer", time_color);
   } else {
@@ -100,11 +116,13 @@ function countDown({ hh_mm_ss, show_milli, recipe_milli, num_minutes, is_timing,
 }
 
 function drawTimer(props) {
+  const light_or_dark = lightOrDark(light_css, dark_css);
   const { show_milli, num_minutes } = props;
   let toggled_timer;
   let show_seconds = Math.round(show_milli / 1000);
   const hh_mm_ss = toHHMMSS(show_seconds, num_minutes);
   props['hh_mm_ss'] = hh_mm_ss;
+  props['ok_time_color'] = light_or_dark.button_text;
   if (num_minutes < 0) {
     toggled_timer = countUp(props);
   } else {
@@ -112,6 +130,8 @@ function drawTimer(props) {
   }
   return toggled_timer;
 }
+
+///////////////////////////////////////////////////////////////////////////////
 
 function ToggledTimer({ num_minutes, setClear_my_interval }) {
 
@@ -124,7 +144,7 @@ function ToggledTimer({ num_minutes, setClear_my_interval }) {
   }
 
   //   have a test, TEST_ALL_TIMERS_4_SECONDS
-  ///  recipe_milli = 2000;   ///////////////@@@@@@@@@@@@@@@@@@@@@
+  //recipe_milli = 2000;   ///////////////@@@@@@@@@@@@@@@@@@@@@
 
   const [is_timing, setIs_timing] = useState(false);
   const [milli_total_previous, setmilli_total_previous] = useState(0);
@@ -174,7 +194,8 @@ function ToggledTimer({ num_minutes, setClear_my_interval }) {
 }
 
 const styles_header = normalizeStyles({
-  ButtonGroup_textStyle: { fontSize: 13 },
+  ButtonGroup_containerStyle: { height: 44 },
+  ButtonGroup_textStyle: { fontSize: 14 },
 })
 
 export { ToggledTimer };

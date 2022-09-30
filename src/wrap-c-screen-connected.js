@@ -19,40 +19,43 @@ import { useFuzzyInterval } from './util-funcs/fuzzy-interval';
 
 
 async function isServerConnectable() {
-  let server_CONNECTABLE;
+  let server_is_connectable;
   const requestOptions = {
     method: "GET",
     headers: { "Last-modified": "text" },
   };
   try {
+    console.log('checking server...')
     const get_response = await fetch(SERVER_UP_URL, requestOptions);
     if (get_response.ok) {
-      server_CONNECTABLE = true;
+      server_is_connectable = true;
     } else {
-      server_CONNECTABLE = false;
+      server_is_connectable = false;
     }
   } catch (e) {
-    server_CONNECTABLE = false;
+    server_is_connectable = false;
   }
   if (TEST_FAIL_SERVER_CONNECTABLE) {
-    server_CONNECTABLE = false;
+    server_is_connectable = false;
   }
-  global.SERVER_IS_CONNECTABLE = server_CONNECTABLE;
+  global.SERVER_IS_CONNECTABLE = server_is_connectable;
   return global.SERVER_IS_CONNECTABLE;
 }
 
 function WrapC_Screen_Connected({ setHave_2_firstPaint }) {
   const [is_server_connected, setIs_server_connected] = useState(false);
-  const [_clear_my_interval, _setClear_my_interval] = useState(0); // not used, need for useFuzzyInterval()
+  const [_clear_my_interval, _setClear_my_interval] = useState(0);
 
-  useFuzzyInterval(() => {
-    let server_CONNECTABLE = isServerConnectable();
+  const serverHeartbeat = () => {
+    let server_is_connectable = isServerConnectable();
     if (TEST_FAIL_SERVER_CONNECTABLE) {
-      server_CONNECTABLE = false;
+      server_is_connectable = false;
       global.SERVER_IS_CONNECTABLE = false;
     }
-    setIs_server_connected(server_CONNECTABLE);
-  }, INTERVAL_CHECK_SERVER_CONNECTABLE, _setClear_my_interval);
+    setIs_server_connected(server_is_connectable);
+  }
+
+  useFuzzyInterval(serverHeartbeat, INTERVAL_CHECK_SERVER_CONNECTABLE, _setClear_my_interval);
 
   useEffect(() => {
     //   updates via global vars

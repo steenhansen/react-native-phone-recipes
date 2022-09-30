@@ -12,10 +12,19 @@ import {
   MEAL_TYPES, CUISINE_TYPES, DIET_TYPES, SHOW_OTHER
 } from '../util-funcs/global-values';
 
+import { lightOrDark } from '../util-funcs/light-dark';
 
+const light_css = {
+  back_ground: 'white',
+};
+
+const dark_css = {
+  back_ground: 'black',
+};
 
 function FilterScreen() {
-  const [FILTER_search, FILTER_setSearch] = useState("");
+
+  const light_or_dark = lightOrDark(light_css, dark_css); const [FILTER_search, FILTER_setSearch] = useState("");
   const [FILTER_meal, FILTER_setMeal] = useState("");
   const [FILTER_cuisine, FILTER_setCuisine] = useState("");
   const [FILTER_diet, FILTER_setDiet] = useState("");
@@ -56,9 +65,11 @@ function FilterScreen() {
 
   const num_recipes_visible = filtered_collection.length;
   const num_recipes_possible = show_collection.length;
+  //    <ScrollView ref={scroll_view_ref} style={[styles_scroll.Scrollview_style, { backgroundColor: light_or_dark.back_ground }]} >
 
   const app_scroll = (
-    <ScrollView ref={scroll_view_ref} style={[styles_scroll.Scrollview_style, {}]} >
+    <ScrollView ref={scroll_view_ref} style={[styles_scroll.Scrollview_style,
+    { backgroundColor: light_or_dark.back_ground, marginTop: 0 }]} >
       <SearchRatio num_recipes_possible={num_recipes_possible} num_recipes_visible={num_recipes_visible} FILTER_search={FILTER_search} FILTER_setSearch={FILTER_setSearch} />
       <RadioButtons button_texts={MEAL_TYPES} FILTER_text={FILTER_meal} setFilter_text={FILTER_setMeal} />
       <View style={[styles_scroll.filter_space]} ></View>
@@ -72,8 +83,10 @@ function FilterScreen() {
   return app_scroll;
 }
 
+
+
 const styles_scroll = normalizeStyles({
-  Scrollview_style: { marginTop: 16 },
+  Scrollview_style: { marginTop: 4 },
   filter_space: { height: 6 }
 })
 export { FilterScreen };

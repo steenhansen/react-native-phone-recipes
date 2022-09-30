@@ -35,8 +35,8 @@ const BottomFooter = () => {
 }
 
 const styles_footer = normalizeStyles({
-  ButtonGroup_textStyle: { fontSize: 10 },
-  ButtonGroup_containerStyle: { height: 24 }
+  ButtonGroup_textStyle: { fontSize: 14 },
+  ButtonGroup_containerStyle: { height: 44 }
 })
 
 export {

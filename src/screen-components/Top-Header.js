@@ -101,11 +101,16 @@ const TopHeader = () => {
   const font_size = styles_header.ButtonGroup_textStyle;
   const buttons = top_buttons;
   const selectedIndex = top_selected;
-  const header_buttons = GroupButtons(updateTopRadio, { buttons, selectedIndex, font_size });
+  const container_height = styles_header.ButtonGroup_containerStyle;
+  const header_buttons = GroupButtons(updateTopRadio, { buttons, selectedIndex, font_size, container_height });
   return header_buttons;
 }
+
+
+
 const styles_header = normalizeStyles({
-  ButtonGroup_textStyle: { fontSize: 13 },
+  ButtonGroup_textStyle: { fontSize: 14 },
+  ButtonGroup_containerStyle: { height: 44 }
 
 })
 

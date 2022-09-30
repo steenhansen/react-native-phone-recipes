@@ -5,24 +5,6 @@ import { THEME_DEAD_INPUT_COLOR } from '../constants';
 
 import { CLICKABLE_CONNECTABLE, CLICKABLE_NOT_CONNECTABLE, SERVER_CONNECTABLE, SERVER_NOT_CONNECTABLE } from '../constants.js';
 
-function THEME_WAS_CLICKED_COLOR() {
-  if (global.SERVER_IS_CONNECTABLE) {
-    return SERVER_CONNECTABLE;
-  } else {
-    return SERVER_NOT_CONNECTABLE;
-  }
-}
-
-function THEME_CAN_CLICK_COLOR() {
-  if (global.SERVER_IS_CONNECTABLE) {
-    return CLICKABLE_CONNECTABLE;
-  } else {
-    return CLICKABLE_NOT_CONNECTABLE;
-  }
-}
-
-
-
 const screen_ratio = PixelRatio.get();
 
 const matchScreen = (css_size) => {
@@ -92,37 +74,41 @@ const normalizeStyles = (
     'paddingLeft',
     'height',
     'left',
-    'top'
+    'top',
+    'minHeight'
   ]
 ) => {
   const normalized_styles = {};
-  Object.keys(my_css).forEach((key) => {
-    normalized_styles[key] = {};
-    Object.keys(my_css[key]).forEach((property) => {
-      if (sizeable_css.includes(property)) {
-        normalized_styles[key][property] = matchScreen(my_css[key][property]);
+  Object.keys(my_css).forEach((css_key) => {
+    normalized_styles[css_key] = {};
+    Object.keys(my_css[css_key]).forEach((css_property) => {
+      if (sizeable_css.includes(css_property)) {
+        normalized_styles[css_key][css_property] = matchScreen(my_css[css_key][css_property]);
       } else {
-        normalized_styles[key][property] = my_css[key][property];
+        normalized_styles[css_key][css_property] = my_css[css_key][css_property];
       }
     });
   });
   return StyleSheet.create(normalized_styles);
 };
 
-const input__styles = {
-  fontSize: 12,
-  backgroundColor: THEME_DEAD_INPUT_COLOR, color: 'black',
-  paddingTop: 0, paddingBottom: 0
-};
+const input__styles = { fontSize: 12, paddingTop: 0, paddingBottom: 0 };
 
-const heading__styles = {
-  fontSize: 12,
-  fontWeight: 'bold', color: 'black'
-};
+const heading__styles = { fontSize: 12, fontWeight: 'bold' };
+
+const heading__empty = { fontSize: 8, fontWeight: 'normal' };
+
+const normalizeConstants = (my_pixels) => {
+  const normalized_pixels = {};
+  Object.keys(my_pixels).forEach((const_key) => {
+    normalized_pixels[const_key] = matchScreen(my_pixels[const_key]);
+  })
+  return normalized_pixels;
+}
+
 
 export {
-  input__styles, heading__styles,
-  THEME_CAN_CLICK_COLOR,
-  THEME_WAS_CLICKED_COLOR,
-  normalizeStyles
+  input__styles, heading__styles, heading__empty,
+
+  normalizeStyles, normalizeConstants
 };

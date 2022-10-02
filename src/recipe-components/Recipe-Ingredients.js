@@ -46,7 +46,7 @@ function RecipeBase(current_recipe, meal_cook) {
         </ListItem>
       </View>
     </TouchableWithoutFeedback >
-  )
+  );
 }
 
 

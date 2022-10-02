@@ -1,5 +1,6 @@
 
-import { ButtonGroup } from '@rneui/themed'
+import { ButtonGroup } from '@rneui/themed';
+import { useEffect } from "react";
 import { View } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import { normalizeStyles } from '../util-funcs/normalize-css';
@@ -25,20 +26,21 @@ const BottomFooter = () => {
     } else if (footer_index == 1) {
       dispatch({ type: 'signout-click', payload: {} });
     }
-  }
+  };
 
   const font_size = styles_footer.ButtonGroup_textStyle;
   const buttons = bottom_buttons;
   const container_height = styles_footer.ButtonGroup_containerStyle;
   const footer_buttons = GroupButtons(pressFooter, { buttons, font_size, container_height });
+
   return footer_buttons;
-}
+};
 
 const styles_footer = normalizeStyles({
   ButtonGroup_textStyle: { fontSize: 14 },
   ButtonGroup_containerStyle: { height: 44 }
-})
+});
 
 export {
   BottomFooter
-}
+};

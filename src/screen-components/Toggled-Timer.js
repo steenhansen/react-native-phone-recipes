@@ -11,6 +11,7 @@ import { normalizeStyles } from '../util-funcs/normalize-css';
 
 import { lightOrDark } from '../util-funcs/light-dark';
 import { INTERVAL_TIMER_EXECUTE, THEME_TIMER_OK, THEME_TIMER_OVERRUN, THEME_TIMER_POSITIVE } from '../constants';
+import { TEST_FAST_NEG_TIMERS } from '../testing-flags';
 
 
 import {
@@ -60,11 +61,11 @@ function resumeReset(hh_mm_ss, timerResume, timerReset, resume_words, reset_word
   const top_buttons = [resume_words, reset_words, hh_mm_ss];
   const updateTopRadio = async chosen_index => {
     if (chosen_index == 0) {
-      timerResume()
+      timerResume();
     } else {
-      timerReset()
+      timerReset();
     }
-  }
+  };
   const font_size = styles_header.ButtonGroup_textStyle;
   const buttons = top_buttons;
   const container_height = styles_header.ButtonGroup_containerStyle;
@@ -143,8 +144,9 @@ function ToggledTimer({ num_minutes, setClear_my_interval }) {
     recipe_milli = num_minutes * 60 * 1000;
   }
 
-  //   have a test, TEST_ALL_TIMERS_4_SECONDS
-  //recipe_milli = 2000;   ///////////////@@@@@@@@@@@@@@@@@@@@@
+  if (TEST_FAST_NEG_TIMERS) {
+    recipe_milli = 2000;
+  }
 
   const [is_timing, setIs_timing] = useState(false);
   const [milli_total_previous, setmilli_total_previous] = useState(0);
@@ -163,7 +165,7 @@ function ToggledTimer({ num_minutes, setClear_my_interval }) {
     const now_milli = Date.now();
     setMilli_current_start(now_milli);
     setIs_timing(true);
-  }
+  };
 
   const timerToggle = () => {
     const now_milli = Date.now();
@@ -196,7 +198,7 @@ function ToggledTimer({ num_minutes, setClear_my_interval }) {
 const styles_header = normalizeStyles({
   ButtonGroup_containerStyle: { height: 44 },
   ButtonGroup_textStyle: { fontSize: 14 },
-})
+});
 
 export { ToggledTimer };
 

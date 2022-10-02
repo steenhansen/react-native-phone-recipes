@@ -19,21 +19,21 @@ const RadioButtons = ({ button_texts, FILTER_text, setFilter_text }) => {
         setFilter_text(selected_text);
       }
     }
-  }
+  };
   const font_size = styles_radio.styles_filter_text;
   const buttons = button_texts;
 
   const container_height = styles_radio.ButtonGroup_containerStyle;
   const filter_buttons = GroupButtons(updateRadio, { buttons, selectedIndex, font_size, container_height });
   return filter_buttons;
-}
+};
 
 const styles_radio = normalizeStyles({
   styles_filter_text: {
     fontSize: 10
   },
   ButtonGroup_containerStyle: { height: 44 }
-})
+});
 
 
 export {

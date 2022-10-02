@@ -10,11 +10,9 @@
 
 ## Cook multiple dishes at the same time with the help of stopwatches on this Android app.
 
-This is a much easier to use copy of the web page https://phone-recipes.herokuapp.com.
+Phone-Recipes on [Google Play](https://play.google.com/store/apps/details?id=com.fonecook3) with dark mode.
 
-Adding, editing, and deletion of recipes can only be done on the Internet as this mobile version of the program has no editing capabilities.
-
-
+Phone-Recipes on [Web Page](https://phone-recipes.herokuapp.com) where editing of recipes available.
 
 
 -------------------------------
@@ -39,16 +37,15 @@ Use the stopwatches to coordinate different dishes.
 
 
 -------------------------------
-## Run App on Android Emulator
-
 ### Install Node.js Packages
 
 ```bash
 PS C:/the-project> yarn install
 ```
 
+-------------------------------
 
-### USB Run:
+## USB Run:
 
   Bash 1
 
@@ -59,101 +56,67 @@ PS C:/the-project> yarn start
   Bash 2
 
 ```bash
-PS C:/the-project> adb devices
-                        List of devices attached
-                        52109e7dea7f2495        device
-                        emulator-5554   device
-
-                 > adb -s emulator-5554 emu kill
-                      OK: killing emulator, bye bye
-
-                 > adb start-server
-
-                 > adb devices
-                        List of devices attached
-                        52109e7dea7f2495        device
-
-                 > yarn android
-
-                 > adb -s 52109e7dea7f2495 reverse tcp:8081 tcp:8081
-
+PS C:/the-project> yarn android
 ```
 
-  http://localhost:8081/debugger-ui/
-
-### EMLUATOR Run:
-
-  unplug USB Android phone
-
-  start emulator in Android Studio
-
-  Bash 1
-
+  Debug Browser
 ```bash
-PS C:/the-project> yarn start
-```
-  Bash 2
-
-```bash
-PS C:/the-project> adb devices
-List of devices attached
-emulator-5554   device
-
-PS C:/the-project> yarn android  --deviceId=52109e7dea7f2495
-
-PS C:/the-project> adb -s emulator-5556 emu avd name
-Pixel_4_XL_Edited_API_30_high-rez
-OK
-
-
+http://localhost:8081/debugger-ui/
 ```
 
-  Open in browser
-    http://localhost:8081/debugger-ui/
 
 -------------------------------
-https://stackoverflow.com/questions/5350624/set-icon-for-android-application
 
 ### Release Build
 ```bash
-
-
-PS C:/the-project/android> ./gradlew bundleRelease       // make an aab
-
-/the-project/android/app/build/outputs/bundle/release/app-release.aab
-
-
+Update versions in /the-project/android/app/build.gradle
         versionCode 2
         versionName "2.0"
 
+PS C:/the-project/android> ./gradlew bundleRelease
 
-        
-
-PS C:/the-project/android> ./gradlew clean
-PS C:/the-project/android> ./gradlew assembleRelease         // make an apk
-
-
-
+Results in /the-project/android/app/build/outputs/bundle/release/app-release.aab
 ```
 
-FROM : https://stackoverflow.com/questions/49513047/react-native-assemblerelease-fails-for-task-appbundlereleasejsandassets
 
-https://instamobile.io/android-development/generate-react-native-release-build-android/
+-------------------------------
+### APK
+```bash
+PS C:/the-project/android> ./gradlew clean
+PS C:/the-project/android> ./gradlew assembleRelease
 
-Makes installable APKs that run without USB in [/android/app/build/outputs/apk/release/](/android/app/build/outputs/apk/release/)
+Results in /the-project/android/app/build/outputs/apk/release/app-x86-release.apk
+```
 
-The only permission used is Internet.
-```XML
-<uses-permission android:name="android.permission.INTERNET" />
+-------------------------------
+### Multiple Devices Clashing
+
+```bash
+PS C:/the-project> adb devices
+                        List of devices attached
+                        52109e7dea7f2495        device
+                        emulator-5554           device
+
+PS C:/the-project> adb -s emulator-5554 emu kill
+                        OK: killing emulator, bye bye
+
+PS C:/the-project> adb start-server
+
+PS C:/the-project> adb devices
+                        List of devices attached
+                        52109e7dea7f2495        device
+
+PS C:/the-project> adb -s 52109e7dea7f2495 reverse tcp:8081 tcp:8081
+
 ```
 
 -------------------------------
 
-## Run APK in Emulator
+### Possible Errors and Fixes
 
-Drag /the-project/android/app/build/apk/release/app-x86-release.apk into Android Studio running emulator
 
-## Possible Errors and Fixes
+
+
 
 ERROR
     EADDRINUSE: address already in use :::8081
@@ -184,13 +147,3 @@ ERROR
 
       /yarn start --reset-cache
       /yarn android
-
-////////////////////////////////////////////////////////////////////////////////
-
-
-make apk
-
-1 Open Android SDK
-2 open /the-project/android project
-3 Build | Build Bundle(s) / APK(s)
-4 Build APK(s)

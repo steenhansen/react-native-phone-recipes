@@ -83,7 +83,7 @@ function MealCuisineDietCook({ current_recipe, google_email, recipes_expanded })
           textDecorationLine: 'underline', textAlign: "center", color: light_or_dark.link_color
         }]}>
         {cook}</Text>
-    </Text>)
+    </Text>);
   }
 
   return (
@@ -133,7 +133,7 @@ function MealCuisineDietCook({ current_recipe, google_email, recipes_expanded })
       </View>
 
     </View>
-  )
+  );
 }
 
 
@@ -158,7 +158,7 @@ const styles_meal = normalizeStyles({
     fontSize: 10
   },
 
-})
+});
 
 
 export { MealCuisineDietCook };

@@ -7,7 +7,7 @@ const browserOpen = async (browser_url) => {
   } else {
     console.log('link not suported :', browser_url);
   }
-}
+};
 
 export {
   browserOpen

@@ -10,10 +10,10 @@ const CLICKABLE_NOT_CONNECTABLE = 'rgba(220,  137,32,   0.1)';
 const ID_TOKEN_VALIDATE_URL = "https://phone-recipes.herokuapp.com/validate-token/";
 const ALL_RECIPES_URL = "https://phone-recipes.herokuapp.com/get-api/";
 const GMAIL_RECIPES_URL = "https://phone-recipes.herokuapp.com/user-api/";
-const SERVER_UP_URL = "https://phone-recipes.herokuapp.com/"
+const SERVER_UP_URL = "https://phone-recipes.herokuapp.com/";
 
-const SERVER_NAME = "phone-recipes.herokuapp.com"
-const GOTO_SERVER = "https://phone-recipes.herokuapp.com/"
+const SERVER_NAME = "phone-recipes.herokuapp.com";
+const GOTO_SERVER = "https://phone-recipes.herokuapp.com/";
 
 const THEME_TIMER_OVERRUN = 'red';
 const THEME_TIMER_OK = 'black';
@@ -25,8 +25,8 @@ const RIGHT_INPUT_WIDTH = '30%';
 const THEME_ALIVE_INPUT_COLOR = 'rgba(0, 255, 0, 0.1)';
 const THEME_DEAD_INPUT_COLOR = 'rgba(0, 0, 0, 0.05)';
 
-const INTERVAL_CHECK_SERVER_CONNECTABLE = 4444;          //     54321;
-const INTERVAL_TIMER_EXECUTE = 250;
+const INTERVAL_CHECK_SERVER_CONNECTABLE = 4444;          //     54321;  // How often server is pinged
+const INTERVAL_TIMER_EXECUTE = 500;  // 500==> 60fps
 
 const ASSUME_SERVER_CONNECTABLE_START = true;
 
@@ -44,7 +44,7 @@ const DARK_BTN_TEXT = "black";
 const DARK_LINK_COLOR = "#ffff00";
 const DARK_BTN_COLOR = "#cccc00";
 const DARK_BTN_OFF = "#444400";       // Yellow
-const DARK_BTN_OFF_TEXT = '#ffff00'
+const DARK_BTN_OFF_TEXT = '#ffff00';
 
 // const DARK_LINK_COLOR = "#ff00ff";
 // const DARK_BTN_COLOR = "#cc00cc";

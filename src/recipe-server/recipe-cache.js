@@ -75,7 +75,7 @@ async function getArray(storage_name) {
       }
     }
   } catch (e) {
-    console.log('getArray error, e')
+    console.log('getArray error, e');
   }
   return the_array;
 }
@@ -95,12 +95,12 @@ async function A_B_loadCache(test_start_cache) {
     const recipes_all = test_start_cache.init_A_B_all_cache;
     return { google_email, recipes_all, recipes_yours };
   } else if (test_start_cache.run_after_A_B > 0) {
-    await awaitSeconds(test_start_cache.run_after_A_B)
+    await awaitSeconds(test_start_cache.run_after_A_B);
   }
   const google_email = await AsyncStorage.getItem('@google-email');;
   const recipes_yours = await getArray('@recipes-yours');
   const recipes_all = await getArray('@recipes-all');
-  return { google_email, recipes_all, recipes_yours }
+  return { google_email, recipes_all, recipes_yours };
 }
 
 async function async_RenewCache(google_email, recipes_yours, recipes_all) {
@@ -111,13 +111,13 @@ async function async_RenewCache(google_email, recipes_yours, recipes_all) {
 
 async function clearCache() {
   try {
-    await AsyncStorage.removeItem('@google-email')
-    await AsyncStorage.removeItem('@recipes-yours')
-    await AsyncStorage.removeItem('@recipes-all')
+    await AsyncStorage.removeItem('@google-email');
+    await AsyncStorage.removeItem('@recipes-yours');
+    await AsyncStorage.removeItem('@recipes-all');
   } catch (e) {
     // remove error
   }
-  console.log(" CACHE HAS BEEN CLEARED")
+  console.log(" CACHE HAS BEEN CLEARED");
   return;
 }
 

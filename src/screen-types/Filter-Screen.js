@@ -88,7 +88,7 @@ function FilterScreen() {
 const styles_scroll = normalizeStyles({
   Scrollview_style: { marginTop: 4 },
   filter_space: { height: 6 }
-})
+});
 export { FilterScreen };
 
 

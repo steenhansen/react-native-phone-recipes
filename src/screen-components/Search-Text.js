@@ -56,7 +56,7 @@ const SearchText = ({ width_percent, FILTER_search, FILTER_setSearch }) => {
     </View>
   </>);
   return search_text;
-}
+};
 
 
 
@@ -67,6 +67,6 @@ const styles_search = normalizeStyles({
   Icon_style_mag: { padding: 10, fontSize: 22 },
   Icon_style_x: { padding: 13, fontSize: 24 },
   Input_PlaceStyle: { fontSize: 16 }
-})
+});
 
 export { SearchText };

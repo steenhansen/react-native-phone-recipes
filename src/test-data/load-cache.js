@@ -22,7 +22,7 @@ const INIT_A_ALL_CACHE_1 = [
   }
 
 
-]
+];
 
 export {
   INIT_A_ALL_CACHE_1
@@ -56,4 +56,4 @@ const INIT_A_ALL_CACHE_1XXXX = [
   }
 
 
-]
+];

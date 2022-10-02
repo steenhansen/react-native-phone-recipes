@@ -45,7 +45,7 @@ const styles_scroll = normalizeStyles({
   bottom_fraction: { marginTop: - 6 },
   fraction_style: { paddingLeft: 4, marginTop: 0 }
 
-})
+});
 export { SearchRatio };
 
 

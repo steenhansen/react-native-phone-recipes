@@ -48,14 +48,14 @@ async function C_signInSilently(google_email, test_silent_signin) {
     if (test_silent_signin.run_after_C === TEST_NEVER_NO_DATA) {
       return false;
     } else if (test_silent_signin.run_after_C !== TEST_DATA_IMMEDIATE) {
-      await awaitSeconds(test_silent_signin.run_after_C)
+      await awaitSeconds(test_silent_signin.run_after_C);
     }
     const google_email = test_silent_signin.init_C_google_email;
     const google_user_id = test_silent_signin.init_C_google_user_id;
     const google_idToken = test_silent_signin.init_C_google_idToken;
     return { google_email, google_user_id, google_idToken };
   } else if (test_silent_signin.run_after_C > 0) {
-    await awaitSeconds(test_silent_signin.run_after_C)
+    await awaitSeconds(test_silent_signin.run_after_C);
   }
   const user_info = await signInSilently();
   return user_info;

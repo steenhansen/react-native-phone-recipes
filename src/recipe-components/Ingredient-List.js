@@ -32,7 +32,7 @@ function IngredientList({ current_recipe }) {
       <TextInput style={[styles_ingredients.input__styles, { width: LEFT_INPUT_WIDTH, color: light_or_dark.text_color, backgroundColor: light_or_dark.input_color }]} value={ingredient} editable={false} />
       <Text>&nbsp;</Text>
       <TextInput style={[styles_ingredients.input__styles, { width: RIGHT_INPUT_WIDTH, color: light_or_dark.text_color, backgroundColor: light_or_dark.input_color }]} value={amount} editable={false} />
-    </View>)
+    </View>);
 
   let heading_style;
   if (ingredients.length == 0) {

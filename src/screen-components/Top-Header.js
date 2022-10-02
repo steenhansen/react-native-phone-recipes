@@ -33,7 +33,7 @@ async function signIntoGmail(dispatch) {
     const google_user_id = google_info.user.id;
     const google_idToken = google_info.idToken;
 
-    const recipes_yours = await async_loadUser(google_email)
+    const recipes_yours = await async_loadUser(google_email);
     dispatch({ type: 'signin-click', payload: { google_email, google_user_id, google_idToken, recipes_yours } });
     signed_into_gmail = true;
   } catch (error) {
@@ -93,10 +93,10 @@ const TopHeader = () => {
         createNew(redux_google_email);
       }
     } else {
-      setTop_selected(2)
+      setTop_selected(2);
       dispatch({ type: 'yours-click', payload: { google_email, google_user_id, google_idToken, recipes_yours } });
     }
-  }
+  };
 
   const font_size = styles_header.ButtonGroup_textStyle;
   const buttons = top_buttons;
@@ -104,7 +104,7 @@ const TopHeader = () => {
   const container_height = styles_header.ButtonGroup_containerStyle;
   const header_buttons = GroupButtons(updateTopRadio, { buttons, selectedIndex, font_size, container_height });
   return header_buttons;
-}
+};
 
 
 
@@ -112,7 +112,7 @@ const styles_header = normalizeStyles({
   ButtonGroup_textStyle: { fontSize: 14 },
   ButtonGroup_containerStyle: { height: 44 }
 
-})
+});
 
 export {
   TopHeader

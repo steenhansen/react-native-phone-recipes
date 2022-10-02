@@ -155,6 +155,6 @@ function AboutScreen() {
 const about_scroll = normalizeStyles({
   meats_style: { fontSize: 16, },
   about_style: { fontSize: 12, height: 16 },
-})
+});
 
 export { AboutScreen };

@@ -63,7 +63,7 @@ function AccordianTitle(recipe_title, do_underline, on_showHideRecipe = x => x) 
         </View>
       </ListItem.Title>
     </ListItem.Content >
-  )
+  );
 }
 
 
@@ -73,6 +73,6 @@ function AccordianTitle(recipe_title, do_underline, on_showHideRecipe = x => x) 
 const styles_title = normalizeStyles({
   title_style: { fontSize: 22 },
   underscore_style: { fontSize: 22, paddingTop: 2 }
-})
+});
 
 export { AccordianTitle };

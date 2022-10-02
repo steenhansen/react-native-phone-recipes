@@ -102,9 +102,9 @@ const normalizeConstants = (my_pixels) => {
   const normalized_pixels = {};
   Object.keys(my_pixels).forEach((const_key) => {
     normalized_pixels[const_key] = matchScreen(my_pixels[const_key]);
-  })
+  });
   return normalized_pixels;
-}
+};
 
 
 export {

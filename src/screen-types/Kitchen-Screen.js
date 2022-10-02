@@ -57,7 +57,7 @@ function KitchenScreen({ setHave_2_firstPaint }) {
 const styles_scroll = normalizeStyles({
   Scrollview_style: { marginTop: 16 },
   filter_space: { height: 16 }
-})
+});
 export { KitchenScreen };
 
 

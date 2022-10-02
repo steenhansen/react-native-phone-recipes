@@ -80,15 +80,15 @@ const GroupButtons = (on_pressButton, { buttons, selectedIndex = null,
       />
       {server_connection}
     </View >
-  )
-}
+  );
+};
 
 const styles_buttons = normalizeStyles({
   Input_container: { marginTop: 20, minHeight: 49 },
   icon_margin_top: { marginTop: -43 },
   Icon_style_mag: { padding: 10, fontSize: 21 },
   top_margin: { marginLeft: -1, marginTop: -1, marginBottom: -4 }
-})
+});
 
 export { GroupButtons };
 

@@ -63,7 +63,7 @@ const test_server_data = {
 };
 
 async function get_serverData(silent_google_email) {
-  let google_email
+  let google_email;
   if (silent_google_email) {
     google_email = silent_google_email;
   } else {

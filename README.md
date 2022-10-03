@@ -37,11 +37,20 @@ Use the stopwatches to coordinate different dishes.
 
 
 -------------------------------
-### Install Node.js Packages
+## Install Node.js Packages
 
 ```bash
 PS C:/the-project> yarn install
 ```
+-------------------------------
+## Keystore Files
+
+```bash
+PS C:/the-project/keystore.REAL.properties
+PS C:/the-project/android/app/debug.keystore
+```
+
+Need generating as shown in https://github.com/steenhansen/react-native-google-signin-verified.
 
 -------------------------------
 

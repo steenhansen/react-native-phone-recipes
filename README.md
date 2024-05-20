@@ -6,6 +6,10 @@
 
 
 <a name="fast-start"></a>
+<a name="s"></a>
+
+  <img src="./google-icons/tall-phone-android.webp" width="800">
+
 # Phone Recipes ![](./google-icons/google-icon-48.png)
 
 ## Cook multiple dishes at the same time with the help of stopwatches on this Android app.
